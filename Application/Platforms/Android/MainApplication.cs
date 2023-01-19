@@ -1,5 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
+using Microsoft.Maui.LifecycleEvents;
+using Plugin.NFC;
 
 namespace Application;
 
@@ -12,4 +14,6 @@ public class MainApplication : MauiApplication
 	}
 
 	protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+
+	
 }
