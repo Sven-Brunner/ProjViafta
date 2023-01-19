@@ -3,11 +3,11 @@ using LiveChartsCore.SkiaSharpView;
 
 namespace Application;
 
-public partial class MainPage : ContentPage
+public partial class Leaderboard : ContentPage
 {
     int count = 0;
 
-    public MainPage()
+    public Leaderboard()
     {
         InitializeComponent();
     }

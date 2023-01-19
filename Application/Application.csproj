@@ -49,8 +49,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.700" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Plugin.NFC" Version="0.1.26" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Leaderboard.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Leaderboard.xaml.cs">
+	    <DependentUpon>Leaderboard.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
 	</ItemGroup>
 
 </Project>
