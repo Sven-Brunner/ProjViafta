@@ -1,19 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <Shell
     x:Class="Application.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Application"
+    xmlns:mainApp="clr-namespace:Application.NavigationTree.MainApp"
+    xmlns:leaderboard="clr-namespace:Application.NavigationTree.MainApp.Leaderboard"
+    xmlns:application="clr-namespace:Application"
     Shell.FlyoutBehavior="Disabled">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False"></BackButtonBehavior>
+    </Shell.BackButtonBehavior>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-    <ShellContent
-        Title="Leaderboard"
-        ContentTemplate="{DataTemplate local:Leaderboard}"
-        Route="Leaderboard" />
+    <TabBar>
+        <ShellContent
+            Title="VIAFTA"
+            ContentTemplate="{DataTemplate mainApp:MainPage}"
+            Route="MainPage" />
+        <ShellContent Title="Leaderboard" ContentTemplate="{DataTemplate leaderboard:Leaderboard}" Route="Leaderboard" />
+        <ShellContent Title="Connect" ContentTemplate="{DataTemplate application:ConnectPage}" Route="Leaderboard" />
 
-
+    </TabBar>
 </Shell>

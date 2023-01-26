@@ -1,15 +1,9 @@
-﻿using LiveChartsCore;
-using LiveChartsCore.SkiaSharpView;
-
-namespace Application;
+﻿namespace Application.NavigationTree.MainApp.Leaderboard;
 
 public partial class Leaderboard : ContentPage
 {
-    int count = 0;
-
     public Leaderboard()
     {
         InitializeComponent();
     }
-
 }
