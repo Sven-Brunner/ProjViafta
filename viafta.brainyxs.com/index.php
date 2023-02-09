@@ -1,9 +1,12 @@
 <?php
 
 require "api.php";
-
-$api = new Api();
-
-$results = $api->getTops();
-echo json_encode($results);
+if ($_SERVER['REQUEST_METHOD'] === "GET") {
+    $api = new Api();
+    $username = $_GET["user"];
+    $from = $_GET["from"];
+    $to = $_GET["to"];
+    $results = $api->getTops($from, $to, $username);
+    echo json_encode($results);
+}
 ?>

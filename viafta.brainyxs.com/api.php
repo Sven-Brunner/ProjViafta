@@ -5,6 +5,8 @@ require "connect.php";
 class Api
 {
     const PASSWORD = "GURKENSALAMIAUFLAUF";
+    const FROM = 0;
+    const TO = 9;
     private $db;
 
     public function __construct()
@@ -20,9 +22,24 @@ class Api
         return $hmac == $signature;
     }
 
-    public function getTops($from = 0, $to = 9)
+    public function getTops($from, $to, $username)
     {
-        $result = $this->db->query("SELECT * FROM score ORDER BY distance LIMIT %s, %s", $from, $to);
+        if (isset($username))
+        {
+            $result = $this->db->query("SELECT * FROM score WHERE athlete = '%s' ORDER BY distance", $username);
+        }
+        else
+        {
+            if (!isset($from))
+            {
+                $from = self::FROM;
+            }
+            if (!isset($to))
+            {
+                $to = self::TO;
+            }
+            $result = $this->db->query("SELECT * FROM score ORDER BY distance LIMIT %s, %s", $from, $to);
+        }
         $array = $result->fetch_all(MYSQLI_ASSOC);
         return $array;
     }
