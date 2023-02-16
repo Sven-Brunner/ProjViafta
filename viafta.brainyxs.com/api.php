@@ -24,24 +24,23 @@ class Api
 
     public function getTops($from, $to, $username)
     {
-        if (isset($username))
-        {
+        if (isset($username)) {
             $result = $this->db->query("SELECT * FROM score WHERE athlete = '%s' ORDER BY distance", $username);
-        }
-        else
-        {
-            if (!isset($from))
-            {
+        } else {
+            if (!isset($from)) {
                 $from = self::FROM;
             }
-            if (!isset($to))
-            {
+            if (!isset($to)) {
                 $to = self::TO;
             }
             $result = $this->db->query("SELECT * FROM score ORDER BY distance LIMIT %s, %s", $from, $to);
         }
         $array = $result->fetch_all(MYSQLI_ASSOC);
         return $array;
+    }
+    public function post($distance, $maxacceleration, $athlete)
+    {
+        $this->db->query("INSERT INTO score (distance, max_acceleration, athlete, created) VALUES (%s, %s, '%s', NOW())", $distance, $maxacceleration, $athlete);
     }
 }
 
