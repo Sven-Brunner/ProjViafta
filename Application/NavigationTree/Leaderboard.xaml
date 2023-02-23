@@ -1,9 +1,23 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navigationTree="clr-namespace:Application.NavigationTree"
+             xmlns:controls="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              x:Class="Application.NavigationTree.MainApp.Leaderboard.Leaderboard">
+    <ContentPage.BindingContext>
+        <navigationTree:LeaderboardViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
-            <Button Text="To Back"></Button>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <controls:DataGrid ItemsSource="{Binding Records}" UseAutoColumns="True" Margin="15">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="Center" />
+            </controls:DataGrid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
