@@ -15,7 +15,15 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <controls:DataGrid ItemsSource="{Binding Records}" UseAutoColumns="True" Margin="15">
+            <controls:DataGrid ItemsSource="{Binding Records}" UseAutoColumns="False" Margin="15">
+                <controls:DataGrid.Columns>
+
+                    <controls:DataGridColumn Binding="{Binding Username}" Title="Username" Width="Auto"/>
+                    <controls:DataGridColumn Binding="{Binding Distance}" Title="Throw Distance" Width="Auto"/>
+                    <controls:DataGridColumn Binding="{Binding MaxAcceleration}" Title="Max acceleration" Width="Auto"/>
+                    <controls:DataGridColumn Binding="{Binding Created}" Title="date" Width="Auto"/>
+
+                </controls:DataGrid.Columns>
                 <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="Center" />
             </controls:DataGrid>
         </Grid>
