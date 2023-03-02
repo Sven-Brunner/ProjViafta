@@ -1,9 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navigationTree="clr-namespace:Application.NavigationTree"
              x:Class="Application.ConnectPage">
+    <ContentPage.BindingContext>
+        <navigationTree:ConnectPageViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        
+        <StackLayout>
+            <Button Text="Connect" Command="{Binding StartNfcCommand}"></Button>
+            <Label Text="{Binding Content}"></Label>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
