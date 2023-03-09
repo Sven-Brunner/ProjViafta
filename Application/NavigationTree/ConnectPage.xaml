@@ -7,9 +7,14 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
+            <Label LineBreakMode="WordWrap" Margin="5,20,10,20"
+                   Text="Connect your V.I.A.F.T.A. supported Frisbee device to your phone. Data-Transfer will start automatically." />
+            <Label LineBreakMode="WordWrap" Margin="5,0,10,20"
+                   Text="Please make sure to hold the NFC-Sensor of your Frisbee right at the middle of your phone and keep them connected until the datatransfer is completed.">
+            </Label>
+            <Label LineBreakMode="WordWrap" Margin="5,0,10,35" Text="Supported Device: V.I.A.F.T.A F1"></Label>
             <Button Text="Connect" Command="{Binding StartNfcCommand}"></Button>
             <Label Text="{Binding Content}"></Label>
-            <Label Text="{Binding Status}"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
