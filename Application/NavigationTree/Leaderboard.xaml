@@ -3,6 +3,11 @@
              xmlns:navigationTree="clr-namespace:Application.NavigationTree"
              xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
              x:Class="Application.NavigationTree.MainApp.Leaderboard.Leaderboard">
+    <ContentPage.Resources>
+        <Style x:Key="Style" TargetType="Label">
+            <Setter Property="TextColor" Value="White"></Setter>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <navigationTree:LeaderboardViewModel />
     </ContentPage.BindingContext>
@@ -10,33 +15,41 @@
         <Grid>
             <dg:DataGrid ItemsSource="{Binding Records}" SelectionEnabled="False" RefreshingEnabled="True"
                          PullToRefreshCommand="{Binding InitializeAsyncCommand}" IsRefreshing="{Binding IsBusy}"
-                         BorderColor="Blue">
+                         BorderColor="DarkGray" HeaderBackground="darkblue" HeaderLabelStyle="{StaticResource Style}">
                 <dg:DataGrid.Columns>
                     <dg:DataGridColumn Title="Username" SortingEnabled="False">
                         <dg:DataGridColumn.CellTemplate>
                             <DataTemplate>
-                                <Label Text="{Binding Username}"></Label>
+                                <ContentView HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Black">
+                                    <Label Text="{Binding Username}"></Label>
+                                </ContentView>
                             </DataTemplate>
                         </dg:DataGridColumn.CellTemplate>
                     </dg:DataGridColumn>
                     <dg:DataGridColumn Title="Distance" PropertyName="Distance">
                         <dg:DataGridColumn.CellTemplate>
                             <DataTemplate>
-                                <Label Text="{Binding StringFormat='{0:N2}m'}"></Label>
+                                <ContentView HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Black">
+                                    <Label Text="{Binding StringFormat='{0:N2}m'}"></Label>
+                                </ContentView>
                             </DataTemplate>
                         </dg:DataGridColumn.CellTemplate>
                     </dg:DataGridColumn>
-                    <dg:DataGridColumn Title="MaxAcceleration" PropertyName="MaxAcceleration">
+                    <dg:DataGridColumn Title="Acceleration" PropertyName="MaxAcceleration">
                         <dg:DataGridColumn.CellTemplate>
                             <DataTemplate>
-                                <Label Text="{Binding StringFormat='{0:N2}m/s'}"></Label>
+                                <ContentView HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Black">
+                                    <Label Text="{Binding StringFormat='{0:N2}m/s'}"></Label>
+                                </ContentView>
                             </DataTemplate>
                         </dg:DataGridColumn.CellTemplate>
                     </dg:DataGridColumn>
                     <dg:DataGridColumn Title="Datum" PropertyName="Created">
                         <dg:DataGridColumn.CellTemplate>
                             <DataTemplate>
-                                <Label Text="{Binding StringFormat='{0:dd/MM/yyyy}'}"></Label>
+                                <ContentView HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Black">
+                                    <Label Text="{Binding StringFormat='{0:dd/MM/yyyy}'}"></Label>
+                                </ContentView>
                             </DataTemplate>
                         </dg:DataGridColumn.CellTemplate>
                     </dg:DataGridColumn>
