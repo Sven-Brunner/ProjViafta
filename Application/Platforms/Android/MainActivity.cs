@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Nfc;
 using Android.OS;
 using Plugin.NFC;
 

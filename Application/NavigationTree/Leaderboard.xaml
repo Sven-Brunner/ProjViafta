@@ -1,31 +1,48 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:navigationTree="clr-namespace:Application.NavigationTree"
-             xmlns:controls="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
              x:Class="Application.NavigationTree.MainApp.Leaderboard.Leaderboard">
     <ContentPage.BindingContext>
         <navigationTree:LeaderboardViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+            <dg:DataGrid ItemsSource="{Binding Records}" SelectionEnabled="False" RefreshingEnabled="True"
+                         PullToRefreshCommand="{Binding InitializeAsyncCommand}" IsRefreshing="{Binding IsBusy}"
+                         BorderColor="Blue">
+                <dg:DataGrid.Columns>
+                    <dg:DataGridColumn Title="Username" SortingEnabled="False">
+                        <dg:DataGridColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding Username}"></Label>
+                            </DataTemplate>
+                        </dg:DataGridColumn.CellTemplate>
+                    </dg:DataGridColumn>
+                    <dg:DataGridColumn Title="Distance" PropertyName="Distance">
+                        <dg:DataGridColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding StringFormat='{0:N2}m'}"></Label>
+                            </DataTemplate>
+                        </dg:DataGridColumn.CellTemplate>
+                    </dg:DataGridColumn>
+                    <dg:DataGridColumn Title="MaxAcceleration" PropertyName="MaxAcceleration">
+                        <dg:DataGridColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding StringFormat='{0:N2}m/s'}"></Label>
+                            </DataTemplate>
+                        </dg:DataGridColumn.CellTemplate>
+                    </dg:DataGridColumn>
+                    <dg:DataGridColumn Title="Datum" PropertyName="Created">
+                        <dg:DataGridColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding StringFormat='{0:dd/MM/yyyy}'}"></Label>
+                            </DataTemplate>
+                        </dg:DataGridColumn.CellTemplate>
+                    </dg:DataGridColumn>
 
-            <controls:DataGrid ItemsSource="{Binding Records}" UseAutoColumns="False" Margin="15">
-                <controls:DataGrid.Columns>
-
-                    <controls:DataGridColumn Binding="{Binding Username}" Title="Username" Width="Auto"/>
-                    <controls:DataGridColumn Binding="{Binding Distance}" Title="Throw Distance" Width="Auto"/>
-                    <controls:DataGridColumn Binding="{Binding MaxAcceleration}" Title="Max acceleration" Width="Auto"/>
-                    <controls:DataGridColumn Binding="{Binding Created}" Title="date" Width="Auto"/>
-
-                </controls:DataGrid.Columns>
-                <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="Center" />
-            </controls:DataGrid>
+                </dg:DataGrid.Columns>
+            </dg:DataGrid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -9,19 +9,25 @@ public class ConnectPageViewModel : INotifyPropertyChanged
 {
     public ICommand StartNfcCommand { get; set; }
     public string Content { get; set; } = "NO DATA";
+    public string Status { get; set; } = "STATUS";
 
     public ConnectPageViewModel()
     {
         StartNfcCommand = new Command(StartNfc);
+        CrossNFC.Current.OnMessageReceived += Nfc;
     }
 
     private void StartNfc()
     {
         CrossNFC.Current.StartListening();
-        CrossNFC.Current.OnMessageReceived += Nfc;
     }
 
-    private void Nfc(ITagInfo taginfo)
+    private void StatusChanged(bool isenabled)
+    {
+        Status = isenabled ? "READING" : "NO READING";
+    }
+
+    private void Nfc(ITagInfo taginfo) 
     {
         Content = taginfo.SerialNumber;
         foreach (var id in taginfo.Identifier)

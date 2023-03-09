@@ -9,6 +9,7 @@
         <StackLayout>
             <Button Text="Connect" Command="{Binding StartNfcCommand}"></Button>
             <Label Text="{Binding Content}"></Label>
+            <Label Text="{Binding Status}"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

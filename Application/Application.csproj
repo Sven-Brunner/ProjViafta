@@ -49,11 +49,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="akgul.Maui.DataGrid" Version="2.0.0" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.700" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3-beta1" />
 		<PackageReference Include="Plugin.NFC" Version="0.1.26" />
-		<PackageReference Include="UraniumUI.Material" Version="2.3.1" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -81,6 +82,13 @@
 	    <DependentUpon>ConnectPage.xaml</DependentUpon>
 	    <SubType>Code</SubType>
 	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Update="Platforms\Android\Resources\xml\nfc_tech_filter.xml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+	  </AndroidResource>
 	</ItemGroup>
 
 </Project>
