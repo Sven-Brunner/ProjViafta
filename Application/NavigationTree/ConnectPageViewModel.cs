@@ -21,19 +21,20 @@ public class ConnectPageViewModel : INotifyPropertyChanged
     {
         CrossNFC.Current.StartListening();
     }
-
+    
     private void StatusChanged(bool isenabled)
     {
         Status = isenabled ? "READING" : "NO READING";
     }
 
-    private void Nfc(ITagInfo taginfo) 
+    private void Nfc(ITagInfo taginfo)
     {
         Content = taginfo.SerialNumber;
         foreach (var id in taginfo.Identifier)
         {
             Content += $"{id}\n";
         }
+
         OnPropertyChanged(nameof(Content));
     }
 

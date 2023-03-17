@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace Application;
@@ -23,4 +24,5 @@ public static class MauiProgram
 
 		return builder.Build();
 	}
+	
 }
