@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         $body = file_get_contents('php://input');
         $json = json_decode($body);
         $distance = $json->distance;
-        $maxacceleration = $json->maxacceleration;
+        $maxacceleration = $json->max_acceleration;
         $athlete = $json->athlete;
         $api->post($distance, $maxacceleration, $athlete);
         http_response_code(201);

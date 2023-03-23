@@ -41,7 +41,7 @@ class Api
     public function post($distance, $maxacceleration, $athlete)
     {
         $this->db->query("INSERT INTO score (distance, max_acceleration, athlete, created) VALUES (%s, %s, '%s', NOW())", $distance, $maxacceleration, $athlete);
-    }
+	}
 }
 
 ?>

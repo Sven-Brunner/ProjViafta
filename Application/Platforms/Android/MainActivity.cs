@@ -29,36 +29,6 @@ public class MainActivity : MauiAppCompatActivity
     protected override void OnNewIntent(Intent intent)
     {
         base.OnNewIntent(intent);
-        if (intent == null || !(intent.Action == "android.nfc.action.TAG_DISCOVERED") &&
-            !(intent.Action == "android.nfc.action.NDEF_DISCOVERED"))
-            return;
-        var tag = intent.GetParcelableExtra("android.nfc.extra.TAG") as Tag;
-
-        if (tag == null) return;
-
-        MifareClassic card = MifareClassic.Get(tag);
-        card.Connect();
-        //read block 1 of sector 0
-        if (card.AuthenticateSectorWithKeyA(0,
-                new byte[] { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }) &&
-            card.AuthenticateSectorWithKeyB(0,
-                new byte[] { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff })) //replace if you have other auth keys
-        {
-            for (var i = 0; i < 16; i++)
-            {
-                try
-                {
-                    var block = card.SectorToBlock(0);
-                    byte[] data = card.ReadBlock(block);
-                    var f = data;
-                }
-                catch (Exception e)
-                {
-                    //Ignored
-                }
-            }
-        }
-
-        card.Close();
+        CrossNFC.OnNewIntent(intent);
     }
 }
