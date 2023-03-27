@@ -27,7 +27,17 @@ MFRC522::StatusCode status;
 unsigned int x;
 unsigned int y;
 unsigned int z;
-double x_g_value, y_g_value, z_g_value;
+
+
+float velocity[3] = {0.0, 0.0, 0.0}; // Velocity for x, y, and z axes
+float distance[3] = {0.0, 0.0, 0.0}; // Distance for x, y, and z axes
+float acceleration[3] = {0.0, 0.0, 0.0}; // Acceleration for x, y, and z axes
+float prev_velocity[3] = {0.0, 0.0, 0.0}; // Previous velocity for x, y, and z axes
+
+
+
+
+
 // Define the time interval, distance and velocity
 double timeInterval = 0.01; // 10ms
 double distance = 0.0;
@@ -52,18 +62,21 @@ void loop() {
   z = analogRead(ADXL335_z_pin);
  
   //Calculation of the acceleration in g units on every axis
-  x_g_value = ((((double)(x * 5) / 1024) - 1.65) / 0.330); // Acceleration in x-direction in g units 
-  y_g_value = ((((double)(y * 5) / 1024) - 1.65) / 0.330); // Acceleration in y-direction in g units 
-  z_g_value = ((((double)(z * 5) / 1024) - 1.80) / 0.330); // Acceleration in z-direction in g units 
-  // Calculate the magnitude of acceleration vector
-  double accMag = sqrt(pow(x_g_value, 2) + pow(y_g_value, 2) + pow( z_g_value, 2));
-  // Calculate the velocity in the general direction
-  double velGeneral = accMag * timeInterval;
-  distance += velGeneral * timeInterval;
-  //Maximum speed reached
-  if(velGeneral > maxVelocity){
+  acceleration[0] = ((((double)(x * 5) / 1024) - 1.65) / 0.330 / 9.81); // Acceleration in x-direction in m/s^2 
+  acceleration[1] = ((((double)(y * 5) / 1024) - 1.65) / 0.330 / 9.81); // Acceleration in y-direction  in m/s^2  
+  acceleration[2] = ((((double)(z * 5) / 1024) - 1.80) / 0.330 / 9.81); // Acceleration in z-direction  in m/s^2  
+
+
+   for (int i=0; i<3; i++) {
+    velocity[i] = prev_velocity[i] + acceleration[i] * timeInterval; // Velocity calculation
+    prev_velocity[i] = velocity[i];
+  }
+  float velGeneral = sqrt(pow(velocity[0], 2) + pow(velocity[1], 2) + pow(velocity[2], 2));
+  if(maxVelocity < velGeneral){
     maxVelocity = velGeneral;
   }
+  distance += velGeneral * timeInterval
+
   
   // Prepare the ksy for authentication */
   // All keys are set to FFFFFFFFFFFFh at chip delivery from the factory */
