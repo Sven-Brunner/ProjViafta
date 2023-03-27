@@ -18,7 +18,7 @@ class Api
     {
         $signature = $_SERVER["HTTP_VERIFICATION_SIGNATURE"];
         $body = file_get_contents('php://input');
-        $hmac = hash_hmac("sha256", $body, self::PASSWORD);
+        $hmac = hash_hmac("sha256", $body, self::PASSWORD);	
         return $hmac == $signature;
     }
 

@@ -49,11 +49,11 @@ public class ConnectPageViewModel
             {
                 hmacsha256.ComputeHash(encoding.GetBytes(body));
                 var hash = ByteToString(hmacsha256.Hash).ToLower();
-                http.DefaultRequestHeaders.Add("VERIFICATION_SIGNATURE", hash);
+                http.DefaultRequestHeaders.Add("VERIFICATION-SIGNATURE", hash);
             }
 
 
-            await http.PostAsync("https://viafta.brainyxs.com", new StringContent(body));
+            var red = await http.PostAsync("https://viafta.brainyxs.com", new StringContent(body));
         }
     }
 
